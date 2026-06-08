@@ -1,4 +1,6 @@
 
+using PaymentCalculator.Extensions;
+
 namespace PaymentCalculator
 {
     public class Program
@@ -7,10 +9,7 @@ namespace PaymentCalculator
         {
             var builder = WebApplication.CreateBuilder(args);
 
-
-            builder.Services.AddControllers();
-            builder.Services.AddEndpointsApiExplorer();
-            builder.Services.AddSwaggerGen();
+            builder.Services.AddServices();
 
             var app = builder.Build();
 
