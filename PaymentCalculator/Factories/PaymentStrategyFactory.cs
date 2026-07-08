@@ -16,9 +16,9 @@ namespace PaymentCalculator.Factories
         {
             return paymentMethod switch
             {
-                PaymentMethod.CreditCard => _serviceProvider.GetRequiredService(typeof(CreditCardStrategy)) as IPaymentStrategy,
-                PaymentMethod.Paypal => _serviceProvider.GetRequiredService(typeof(PaypalStrategy)) as IPaymentStrategy,
-                PaymentMethod.Crypto => _serviceProvider.GetRequiredService(typeof(CryptoStrategy)) as IPaymentStrategy,
+                PaymentMethod.CreditCard => _serviceProvider.GetRequiredService<CreditCardStrategy>(),
+                PaymentMethod.Paypal => _serviceProvider.GetRequiredService<PaypalStrategy>(),
+                PaymentMethod.Crypto => _serviceProvider.GetRequiredService<CryptoStrategy>(),
                 _ => throw new NotSupportedException($"Payment method {paymentMethod} is not supported.")
             };
         }

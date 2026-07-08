@@ -6,7 +6,7 @@
         public decimal Amount { get; set; }
         public decimal Fee { get; set; }
         public decimal TotalAmount { get; set; }
-        public string PaymentMethod { get; set; }
+        public string PaymentMethod { get; set; } = string.Empty;
         public DateTime CreatedAt { get; set; }
     }
 }

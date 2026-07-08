@@ -1,4 +1,8 @@
-﻿using PaymentCalculator.Factories;
+﻿using Microsoft.EntityFrameworkCore;
+using PaymentCalculator.Data;
+using PaymentCalculator.Data.Repositories;
+using PaymentCalculator.Data.UnitOfWork;
+using PaymentCalculator.Factories;
 using PaymentCalculator.Services.Payment;
 using PaymentCalculator.Services.Payment.Abtractions;
 using PaymentCalculator.Strategies;
@@ -13,8 +17,13 @@ namespace PaymentCalculator.Extensions
             services.AddEndpointsApiExplorer();
             services.AddSwaggerGen();
 
+            services.AddDbContext<PaymentDbContext>(options =>
+                options.UseInMemoryDatabase("PaymentCalculatorDb"));
+
             services.AddScoped<IPaymentService, PaymentService>();
             services.AddScoped<IPaymentStrategyFactory, PaymentStrategyFactory>();
+            services.AddScoped<IPaymentRepository, PaymentRepository>();
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
 
             services.AddScoped<IPaymentStrategy, CreditCardStrategy>();
             services.AddScoped<IPaymentStrategy, CryptoStrategy>();
